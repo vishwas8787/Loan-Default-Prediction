@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Loan Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h2>💰 Loan Approval System</h2>
+
+    <form method="POST">
+
+        <input name="loan" placeholder="Loan Amount" required>
+        <input name="income" placeholder="Annual Income" required>
+        <input name="rate" placeholder="Interest Rate (%)" required>
+
+        <select name="term">
+            <option value="36">36 Months</option>
+            <option value="60">60 Months</option>
+        </select>
+
+        <select name="grade">
+            <option value="A">Grade A</option>
+            <option value="B">Grade B</option>
+            <option value="C">Grade C</option>
+            <option value="D">Grade D</option>
+            <option value="E">Grade E</option>
+            <option value="F">Grade F</option>
+            <option value="G">Grade G</option>
+        </select>
+
+        <input name="dti" placeholder="Debt-to-Income (%)" required>
+
+        <button type="submit">Predict</button>
+    </form>
+
+    {% if result %}
+        <div class="result">
+            <h3>Decision: {{ result }}</h3>
+            <p>Probability: {{ "%.4f"|format(prob) }}</p>
+        </div>
+    {% endif %}
+
+</div>
+
+</body>
+</html>
